@@ -2,7 +2,7 @@ class Calculator
   include Rates
 
   attr_reader :property_price, :term, :down_payment, :apy
-  
+
   def initialize(property_price, term, down_payment, credit_score)
     @property_price = property_price.to_i
     @term = term.to_i
@@ -11,6 +11,9 @@ class Calculator
   end
 
   MONTHS_IN_A_YEAR = 12
+  HUNDREDTHS = 2
+  PERCENTAGE_DIVISOR = 100
+  NOT_QUALIFIED_MESSAGE = "unfortunately your credit needs improvement before you are eligible for a mortgage"
 
   def mortgage_length
     MONTHS_IN_A_YEAR * term
@@ -21,19 +24,19 @@ class Calculator
   end
 
   def monthly_interest
-    ((principal_amount * (interest_rate / 100)) / MONTHS_IN_A_YEAR).round(2)
+    ((principal_amount * (interest_rate / PERCENTAGE_DIVISOR)) / MONTHS_IN_A_YEAR).round(HUNDREDTHS)
   end
 
   def monthly_payment
     if !apy
       not_qualified
     else
-      ((principal_amount / mortgage_length) + monthly_interest).round(2) || not_qualified unless interest_rate.nil?
+      ((principal_amount / mortgage_length) + monthly_interest).round(HUNDREDTHS) || not_qualified unless interest_rate.nil?
     end
   end
 
   def not_qualified
-    "unfortunately your credit needs improvement before you are eligible for a mortgage"
+    NOT_QUALIFIED_MESSAGE
   end
 
   def interest_rate
@@ -42,6 +45,6 @@ class Calculator
 
   def total_interest(term, monthly_payment)
     return not_qualified unless monthly_payment.to_f.positive?
-    (monthly_payment * mortgage_length).round(2)
+    (monthly_payment * mortgage_length).round(HUNDREDTHS)
   end
 end
