@@ -1,6 +1,8 @@
 class Calculator
   include Rates
 
+  attr_reader :property_price, :term, :down_payment, :apy
+  
   def initialize(property_price, term, down_payment, credit_score)
     @property_price = property_price.to_i
     @term = term.to_i
@@ -11,11 +13,11 @@ class Calculator
   MONTHS_IN_A_YEAR = 12
 
   def mortgage_length
-    MONTHS_IN_A_YEAR * @term
+    MONTHS_IN_A_YEAR * term
   end
 
   def principal_amount
-    @property_price - @down_payment
+    property_price - down_payment
   end
 
   def monthly_interest
@@ -23,7 +25,7 @@ class Calculator
   end
 
   def monthly_payment
-    if !@apy
+    if !apy
       not_qualified
     else
       ((principal_amount / mortgage_length) + monthly_interest).round(2) || not_qualified unless interest_rate.nil?
@@ -35,7 +37,7 @@ class Calculator
   end
 
   def interest_rate
-    @apy == nil ? not_qualified : @apy
+    apy == nil ? not_qualified : apy
   end
 
   def total_interest(term, monthly_payment)
