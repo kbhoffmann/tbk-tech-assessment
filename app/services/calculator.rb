@@ -39,7 +39,7 @@ class Calculator
   end
 
   def total_interest(term, monthly_payment)
-    return not_qualified unless monthly_payment.class == Float
+    return not_qualified unless monthly_payment.to_f.positive?
     (monthly_payment * mortgage_length).round(2)
   end
 end
