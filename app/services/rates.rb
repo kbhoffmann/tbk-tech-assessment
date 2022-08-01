@@ -1,6 +1,6 @@
 module Rates
   def Rates.credit_score(score)
-    if score > 800
+    if score >= 800
       "excellent credit"
     elsif score >= 750 && score <= 799
       "great credit"
