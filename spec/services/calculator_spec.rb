@@ -60,9 +60,16 @@ RSpec.describe Calculator, type: :service do
 
   describe "#mortgage_length" do
     context "mortgage_length exists" do
-      let(:term) { 30 }
       it "calculates length of the mortgage" do
         expect(subject.mortgage_length).to eq(360)
+      end
+    end
+  end
+
+  describe "#principal_amount" do
+    context "principal_amount exists" do
+      it "calculates length of the mortgage" do
+        expect(subject.principal_amount).to eq(400_000)
       end
     end
   end
