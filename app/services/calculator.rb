@@ -9,11 +9,15 @@ class Calculator
   end
 
   def monthly_payment
-    months_in_a_year = 12
-    mortgage_length = months_in_a_year * @term
-    principal_amount = @property_price - @down_payment
-    monthly_interest = (principal_amount * (interest_rate / 100)) / months_in_a_year
-    result = ((principal_amount / mortgage_length) + monthly_interest).round(2) || not_qualified unless interest_rate.nil?
+    if !@apy
+      not_qualified
+    else
+      months_in_a_year = 12
+      mortgage_length = months_in_a_year * @term
+      principal_amount = @property_price - @down_payment
+      monthly_interest = (principal_amount * (interest_rate / 100)) / months_in_a_year
+      result = ((principal_amount / mortgage_length) + monthly_interest).round(2) || not_qualified unless interest_rate.nil?
+    end
   end
 
   def not_qualified
