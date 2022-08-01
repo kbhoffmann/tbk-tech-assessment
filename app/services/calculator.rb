@@ -2,10 +2,10 @@ class Calculator
   include Rates
 
   def initialize(property_price, term, down_payment, credit_score)
-    @property_price = property_price
-    @term = term
-    @down_payment = down_payment
-    @apy = Rates.rates(credit_score)
+    @property_price = property_price.to_i
+    @term = term.to_i
+    @down_payment = down_payment.to_i
+    @apy = Rates.rates(credit_score.to_i)
   end
 
   MONTHS_IN_A_YEAR = 12
