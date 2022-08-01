@@ -28,11 +28,8 @@ class Calculator
   end
 
   def monthly_payment
-    if !apy
-      not_qualified
-    else
-      ((principal_amount / mortgage_length) + monthly_interest).round(HUNDREDTHS) || not_qualified unless interest_rate.nil?
-    end
+    return not_qualified unless apy
+    ((principal_amount / mortgage_length) + monthly_interest).round(HUNDREDTHS)
   end
 
   def not_qualified
