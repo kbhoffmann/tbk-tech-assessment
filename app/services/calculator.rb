@@ -29,6 +29,7 @@ class Calculator
   end
 
   def total_interest(term, monthly_payment)
+    return not_qualified unless monthly_payment.class == Float
     return not_qualified unless monthly_payment
     months_in_a_year = 12
     mortgage_length = months_in_a_year * term
