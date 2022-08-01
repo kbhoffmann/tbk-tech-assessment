@@ -12,7 +12,7 @@ module Api
         if @total_loan.is_a?(Numeric)
           render json: { 'total_loan': @total_loan, 'monthly_payment': @monthly_payment }, status: 201
         else
-          render [{ 'error': @total_loan }], status: 204
+          render json: { 'error': @total_loan }, status: 204
         end
       end
 
