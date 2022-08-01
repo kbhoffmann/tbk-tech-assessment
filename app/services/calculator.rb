@@ -5,7 +5,7 @@ class Calculator
     @property_price = property_price
     @term = term
     @down_payment = down_payment
-    @apy = rates(credit_score)
+    @apy = Rates.rates(credit_score)
   end
 
   def monthly_payment
