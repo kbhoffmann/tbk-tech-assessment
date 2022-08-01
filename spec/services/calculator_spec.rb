@@ -57,4 +57,28 @@ RSpec.describe Calculator, type: :service do
       end
     end
   end
+
+  describe "#mortgage_length" do
+    context "mortgage_length exists" do
+      it "calculates length of the mortgage" do
+        expect(subject.mortgage_length).to eq(360)
+      end
+    end
+  end
+
+  describe "#principal_amount" do
+    context "principal_amount exists" do
+      it "calculates principal amount" do
+        expect(subject.principal_amount).to eq(400_000)
+      end
+    end
+  end
+
+  describe "#monthly_interest" do
+    context "monthly_interest exists" do
+      it "calculates the monthly interest" do
+        expect(subject.monthly_interest).to eq(1266.67)
+      end
+    end
+  end
 end
