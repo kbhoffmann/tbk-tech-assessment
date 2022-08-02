@@ -1,13 +1,23 @@
 module Rates
+  SCORE_800 = 800
+  SCORE_750 = 750
+  SCORE_700 = 700
+  SCORE_600 = 600
+
+  EXCELLENT = "excellent credit"
+  GREAT = "great credit"
+  GOOD = "good credit"
+  OKAY = "okay credit"
+
   def Rates.credit_score(score)
-    if score >= 800
-      "excellent credit"
-    elsif score >= 750 && score <= 799
-      "great credit"
-    elsif score >= 700 && score <= 749
-      "good credit"
-    elsif score >= 600 && score <= 699
-      "okay credit"
+    if score >= SCORE_800
+      EXCELLENT
+    elsif score >= SCORE_750 && score < SCORE_800
+      GREAT
+    elsif score >= SCORE_700 && score < SCORE_750
+      GOOD
+    elsif score >= SCORE_600 && score < SCORE_700
+      OKAY
     else
       "credit needs work"
     end
@@ -15,17 +25,16 @@ module Rates
 
   def Rates.rates(score)
     credit = credit_score(score.floor)
-    if credit == "excellent credit"
-      apy = 2.8
-    elsif credit == "great credit"
-      apy = 3.3
-    elsif credit == "good credit"
-      apy = 3.8
-    elsif credit == "okay credit"
-      apy = 4.0
+    if credit == EXCELLENT
+      2.8
+    elsif credit == GREAT
+      3.3
+    elsif credit == GOOD
+      3.8
+    elsif credit == OKAY
+      4.0
     else
-      apy = nil
+      nil
     end
-    apy
   end
 end
