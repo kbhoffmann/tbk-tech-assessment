@@ -81,4 +81,20 @@ RSpec.describe Calculator, type: :service do
       end
     end
   end
+
+  describe "#interest_rate" do
+    context "interest_rate exists" do
+      it "returns an interest rate if it exists" do
+        expect(subject.interest_rate).to eq(3.8)
+      end
+    end
+
+    context "interest_rate is nil" do
+      let(:credit_score) { 599 }
+      it "returns a not qualified statement" do
+        not_qualified = "unfortunately your credit needs improvement before you are eligible for a mortgage"
+        expect(subject.interest_rate).to eq(not_qualified)
+      end
+    end
+  end
 end
