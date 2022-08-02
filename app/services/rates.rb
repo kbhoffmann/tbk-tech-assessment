@@ -1,23 +1,23 @@
 module Rates
-  SCORE_800 = 800
-  SCORE_750 = 750
-  SCORE_700 = 700
-  SCORE_600 = 600
+  EXCELLENT_LOW_END_SCORE = 800
+  GREAT_LOW_END_SCORE = 750
+  GOOD_LOW_END_SCORE = 700
+  OKAY_LOW_END_SCORE = 600
 
-  EXCELLENT = "excellent credit"
-  GREAT = "great credit"
-  GOOD = "good credit"
-  OKAY = "okay credit"
+  EXCELLENT_CREDIT_STRING = "excellent credit"
+  GREAT_CREDIT_STRING = "great credit"
+  GOOD_CREDIT_STRING = "good credit"
+  OKAY_CREDIT_STRING = "okay credit"
 
   def Rates.credit_score(score)
-    if score >= SCORE_800
-      EXCELLENT
-    elsif score >= SCORE_750 && score < SCORE_800
-      GREAT
-    elsif score >= SCORE_700 && score < SCORE_750
-      GOOD
-    elsif score >= SCORE_600 && score < SCORE_700
-      OKAY
+    if score >= EXCELLENT_LOW_END_SCORE
+      EXCELLENT_CREDIT_STRING
+    elsif score >= GREAT_LOW_END_SCORE && score < EXCELLENT_LOW_END_SCORE
+      GREAT_CREDIT_STRING
+    elsif score >= GOOD_LOW_END_SCORE && score < GREAT_LOW_END_SCORE
+      GOOD_CREDIT_STRING
+    elsif score >= OKAY_LOW_END_SCORE && score < GOOD_LOW_END_SCORE
+      OKAY_CREDIT_STRING
     else
       "credit needs work"
     end
@@ -25,13 +25,13 @@ module Rates
 
   def Rates.rates(score)
     credit = credit_score(score.floor)
-    if credit == EXCELLENT
+    if credit == EXCELLENT_CREDIT_STRING
       2.8
-    elsif credit == GREAT
+    elsif credit == GREAT_CREDIT_STRING
       3.3
-    elsif credit == GOOD
+    elsif credit == GOOD_CREDIT_STRING
       3.8
-    elsif credit == OKAY
+    elsif credit == OKAY_CREDIT_STRING
       4.0
     else
       nil
