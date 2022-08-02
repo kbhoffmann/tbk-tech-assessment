@@ -2,11 +2,7 @@ module Api
   module V1
     class CalculatorsController < ApplicationController
       def create
-        property_price = base_params["property_price"]
-        term = base_params["term"]
-        down_payment = base_params["down_payment"]
-        credit_score = base_params["credit_score"]
-        calculate = Calculator.new(property_price, term, down_payment, credit_score)
+        calculate = Calculator.new(*base_params)
         @monthly_payment = calculate.monthly_payment
         @total_loan = calculate.total_interest(params[:term].to_i, @monthly_payment)
         if @total_loan.is_a?(Numeric)
@@ -16,8 +12,10 @@ module Api
         end
       end
 
+      private
+
       def base_params
-        params.permit(:property_price, :term, :down_payment, :credit_score)
+        params.permit(:property_price, :term, :down_payment, :credit_score).values
       end
     end
   end
